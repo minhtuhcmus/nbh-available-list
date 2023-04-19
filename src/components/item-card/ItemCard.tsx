@@ -10,7 +10,7 @@ function ItemCard({itemDetail}: {itemDetail: IItemDetail}) {
       </div>
       <div className="item-detail-info">
         <div className="item-image">
-          <img src={itemDetail.images}/>
+          <img src={itemDetail.images} alt="item-image"/>
         </div>
         <div className="item-info">
           <div className="item-price item-detail">
