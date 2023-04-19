@@ -1,17 +1,5 @@
 import {Document, Page, StyleSheet, View, Text, Image, Font } from "@react-pdf/renderer";
 import {IItemDetail} from "../../interface/item/item";
-// import arimoBold from "../../fonts/Arimo-Bold.ttf";
-// import arimoItalic from "../../fonts/Arimo-Italic.ttf";
-// import arimoBoldItalic from "../../fonts/Arimo-BoldItalic.ttf";
-
-// Font.register({
-//   family: 'Arimo',
-//   fonts: [
-//     {src: arimoBold, fontWeight: 'bold'},
-//     {src: arimoItalic, fontStyle: 'italic'},
-//     {src: arimoBoldItalic, fontStyle: 'italic', fontWeight: 'bold'}
-//   ]
-// });
 
 Font.register({
   family: "Roboto",
@@ -77,7 +65,7 @@ const styles = StyleSheet.create({
 function MyDoc ({itemDetails}: {itemDetails: IItemDetail[]}) {
   return (
     <Document>
-      <Page size="A4" style={styles.page}>
+      <Page size="A4" style={styles.page} wrap>
         {itemDetails.map(info => <View style={styles.card}>
           <View style={styles.name}>
             <Text>{info.name.toLocaleUpperCase("vn")}</Text>

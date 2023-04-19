@@ -34,7 +34,7 @@ function ItemCard({itemDetail}: {itemDetail: IItemDetail}) {
             <div className="info-detail">{itemDetail.origin}</div>
           </div>
           <div className="item-length item-detail">
-            <div className="info-title">Kích thước</div>
+            <div className="info-title">Độ dài</div>
             <div className="info-detail">{itemDetail.length}</div>
           </div>
         </div>
