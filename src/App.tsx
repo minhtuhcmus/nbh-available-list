@@ -1,679 +1,28 @@
-import React, {useRef, useState} from 'react';
+import React, {ReactNode, useRef, useState} from 'react';
 import './App.css';
 import ItemCard from "./components/item-card/ItemCard";
 import {IItemDetail} from "./interface/item/item";
 import { useReactToPrint } from "react-to-print";
+import * as XLSX from "xlsx";
 
 import image from '../src/312095626_183699880846538_4598999123411653372_n.jpg';
-const itemDetails:IItemDetail[] = [
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  },
-  {
-    available: 10,
-    color: "Hồng",
-    id: 0,
-    images: image,
-    length: ["30cm"],
-    name: "Hoa Đồng tiền",
-    origin: "Việt Nam",
-    packaging: 10,
-    price: "100.000đ"
-  }
-]
+
+function Page({itemDetails}: {itemDetails:IItemDetail[]}) {
+  return (
+    <div className="page">
+      {
+        itemDetails.map(info => <ItemCard itemDetail={info}/>)
+      }
+    </div>
+  )
+}
 
 function App() {
 
   const componentRef = useRef(null);
   const onBeforeGetContentResolve = useRef(null);
   const [loading, setLoading] = useState(false);
-  const [text, setText] = useState("old boring text");
+  const [itemDetails, setItemDetails] = useState<IItemDetail[]>([]);
 
   const handleAfterPrint = React.useCallback(() => {
     console.log("`onAfterPrint` called"); // tslint:disable-line no-console
@@ -683,22 +32,22 @@ function App() {
     console.log("`onBeforePrint` called"); // tslint:disable-line no-console
   }, []);
 
-  const handleOnBeforeGetContent = React.useCallback(() => {
-    console.log("`onBeforeGetContent` called"); // tslint:disable-line no-console
-    setLoading(true);
-    setText("Loading new text...");
-
-    return new Promise<void>((resolve) => {
-      // @ts-ignore
-      onBeforeGetContentResolve.current = resolve;
-
-      setTimeout(() => {
-        setLoading(false);
-        setText("New, Updated Text!");
-        resolve();
-      }, 2000);
-    });
-  }, [setLoading, setText]);
+  // const handleOnBeforeGetContent = React.useCallback(() => {
+  //   console.log("`onBeforeGetContent` called"); // tslint:disable-line no-console
+  //   setLoading(true);
+  //   setText("Loading new text...");
+  //
+  //   return new Promise<void>((resolve) => {
+  //     // @ts-ignore
+  //     onBeforeGetContentResolve.current = resolve;
+  //
+  //     setTimeout(() => {
+  //       setLoading(false);
+  //       setText("New, Updated Text!");
+  //       resolve();
+  //     }, 2000);
+  //   });
+  // }, [setLoading, setText]);
 
   const reactToPrintContent = React.useCallback(() => {
     return componentRef.current;
@@ -707,20 +56,56 @@ function App() {
   const handlePrint = useReactToPrint({
     content: reactToPrintContent,
     documentTitle: "AwesomeFileName",
-    onBeforeGetContent: handleOnBeforeGetContent,
     onBeforePrint: handleBeforePrint,
     onAfterPrint: handleAfterPrint,
     removeAfterPrint: true
   });
 
+  const perPage = 24
+
+  const getPageContent = () => {
+    let pageNum = Math.ceil(itemDetails.length/perPage);
+    let pagesData = new Array(pageNum);
+    for (let i = 0; i < pageNum; i++) {
+      pagesData[i] = itemDetails.slice(i*perPage, (i+1)*perPage)
+    }
+    return pagesData.map(pageData => <Page itemDetails={pageData}/>)
+  }
+
+  const readUploadFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    if (e.target.files) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const data = e.target?.result;
+        console.log(e.target?.result)
+        const workbook = XLSX.read(data, { type: "array" });
+        const sheetName = workbook.SheetNames[0];
+        const worksheet = workbook.Sheets[sheetName];
+        const json:IItemDetail[] = XLSX.utils.sheet_to_json(worksheet);
+        console.log(json);
+        setItemDetails(json);
+      };
+      reader.readAsArrayBuffer(e.target.files[0]);
+    }
+  }
+
   return (
     <div className="App">
-      {loading && <p className="indicator">Loading...</p>}
-      <button onClick={handlePrint}>
-        Get PDF
-      </button>
+      <div className="handler">
+        {loading && <p className="indicator">Loading...</p>}
+        <input
+          type="file"
+          name="upload"
+          id="upload"
+          onChange={(e) => readUploadFile(e)}
+        />
+        <button onClick={handlePrint}>
+          Get PDF
+        </button>
+      </div>
       <div className="viewer" ref={componentRef}>
-        {itemDetails.map(info => <ItemCard itemDetail={info}/>)}
+        {getPageContent()}
       </div>
       {/*<PDFDownloadLink document={<MyDoc  itemDetails={itemDetails}/>} fileName="somename.pdf">*/}
       {/*  {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now!')}*/}

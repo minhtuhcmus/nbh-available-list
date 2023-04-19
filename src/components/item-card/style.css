@@ -61,3 +61,8 @@
   text-align: start;
   font-size: 8px;
 }
+
+.handler {
+  width: 100%;
+  height: 100px;
+}

@@ -1,13 +1,10 @@
 export interface IItemDetail {
-  id: number;
   name: string;
-  description?: String;
   available: number;
   packaging: number;
   origin: string;
   price: string;
-  order?: number;
-  length: string[];
+  length: string;
   color: string;
   images: string;
 }
