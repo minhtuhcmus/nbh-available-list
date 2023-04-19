@@ -1,11 +1,9 @@
-import React, {ReactNode, useRef, useState} from 'react';
+import React, {useRef, useState} from 'react';
 import './App.css';
 import ItemCard from "./components/item-card/ItemCard";
 import {IItemDetail} from "./interface/item/item";
 import { useReactToPrint } from "react-to-print";
 import * as XLSX from "xlsx";
-
-import image from '../src/312095626_183699880846538_4598999123411653372_n.jpg';
 
 function Page({itemDetails}: {itemDetails:IItemDetail[]}) {
   return (
@@ -20,8 +18,6 @@ function Page({itemDetails}: {itemDetails:IItemDetail[]}) {
 function App() {
 
   const componentRef = useRef(null);
-  const onBeforeGetContentResolve = useRef(null);
-  const [loading, setLoading] = useState(false);
   const [itemDetails, setItemDetails] = useState<IItemDetail[]>([]);
 
   const handleAfterPrint = React.useCallback(() => {
@@ -93,7 +89,6 @@ function App() {
   return (
     <div className="App">
       <div className="handler">
-        {loading && <p className="indicator">Loading...</p>}
         <input
           type="file"
           name="upload"
