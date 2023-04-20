@@ -21,7 +21,7 @@
 }
 
 .viewer{
-  width: 29.7cm;
+  width: 21cm;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,17 +30,15 @@
 
 .page{
   width: 100%;
-  height: 21cm;
+  height: 29.7cm;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  /*margin: 35px 0 65px 0;*/
+  justify-content: space-evenly;
 }
 
 .page-content{
   width: 100%;
-  height: 80%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -50,7 +48,6 @@
 
 .page-footer{
   width: 100%;
-  height: 10%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -59,7 +56,6 @@
 
 .page-header{
   width: 100%;
-  height: 10%;
   font-weight: bolder;
   font-size: large;
   display: flex;
@@ -69,10 +65,10 @@
 }
 
 .logo{
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
+  width: 2.25cm;
+  height: 2.25cm;
+  object-fit: scale-down;
   position: absolute;
-  left: 50px;
-  right: 50px;
+  left: 5px;
+  right: 5px;
 }

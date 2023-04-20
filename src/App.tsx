@@ -79,7 +79,7 @@ function App() {
     removeAfterPrint: true
   });
 
-  const perPage = 16
+  const perPage = 10
 
   const getPageContent = () => {
     let pageNum = Math.ceil(itemDetails.length/perPage);

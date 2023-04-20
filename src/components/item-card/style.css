@@ -1,8 +1,9 @@
 .item-card-wrapper{
   display: flex;
   flex-direction: column;
-  width: 250px;
-  margin: 5px;
+  width: 10cm;
+  height: 5cm;
+  margin: 0.15cm;
   border: 1px solid rgba(73, 88, 98, .2);
 }
 
@@ -11,27 +12,31 @@
 }
 
 .item-name{
-  height: 50px;
+  height: 1cm;
   text-align: center;
-  line-height: 50px;
+  line-height: 1cm;
+  font-weight: bold;
 }
 
 .item-detail-info {
   display: flex;
   flex-direction: row;
   padding-bottom: 12px;
+  width: 10cm;
+  height: 4.25cm;
 }
 
 .item-image{
-  width: 40%;
+  width: 4cm;
+  height: 4cm;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .item-image > img {
-  width: 90%;
-  aspect-ratio: 1/1;
+  width: 3.5cm;
+  height: 3.5cm;
   object-fit: cover;
 }
 
@@ -40,7 +45,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 60%;
+  width: 6cm;
 }
 
 .item-info .item-price > .info-detail {
@@ -50,22 +55,22 @@
 .item-detail{
   display: flex;
   flex-direction: row;
-  line-height: 15px;
+  line-height: 20px;
   width: 100%;
-}
-
+} */
+/* 
 .info-title{
   width: 50%;
   text-align: end;
-  font-size: 8px;
+  font-size: 14px;
 }
 
-.info-detail{
+/* .info-detail{
   width: 50%;
   text-align: start;
-  font-size: 8px;
+  font-size: 14px;
   margin-left: 4px;
-}
+} */
 
 .handler {
   width: 100%;
