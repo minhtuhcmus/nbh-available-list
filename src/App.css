@@ -6,6 +6,20 @@
   width: 100%;
 }
 
+.handler{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.file-upload{
+  margin-bottom: 12px;
+}
+.date-input{
+  margin-bottom: 12px;
+}
+
 .viewer{
   width: 29.7cm;
   display: flex;

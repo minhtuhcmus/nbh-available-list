@@ -118,17 +118,23 @@ function App() {
   return (
     <div className="App">
       <div className="handler">
-        <input
-          type="file"
-          name="upload"
-          id="upload"
-          onChange={(e) => readUploadFile(e)}
-        />
-        <input
-          type="text"
-          onChange={e => setDate(e.target.value)}
-        />
-        <button onClick={handlePrint}>
+        <div className="file-upload">
+          Chọn file {" "}
+          <input
+            type="file"
+            name="upload"
+            id="upload"
+            onChange={(e) => readUploadFile(e)}
+          />
+        </div>
+        <div className="date-input">
+          Nhập ngày tháng làm báo giá{" "}
+          <input
+            type="text"
+            onChange={e => setDate(e.target.value)}
+          />
+        </div>
+        <button className="get-pdf-btn" onClick={handlePrint}>
           Get PDF
         </button>
       </div>
