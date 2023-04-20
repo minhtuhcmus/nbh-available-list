@@ -7,4 +7,6 @@ export interface IItemDetail {
   length: string;
   color: string;
   images: string;
+  orderBy: string;
+  note: string;
 }
