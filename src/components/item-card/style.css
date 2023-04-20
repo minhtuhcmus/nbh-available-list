@@ -1,9 +1,8 @@
 .item-card-wrapper{
   display: flex;
   flex-direction: column;
-  width: 10cm;
-  height: 5cm;
-  margin: 0.15cm;
+  width: 9cm;
+  height: 6cm;
   border: 1px solid rgba(73, 88, 98, .2);
 }
 
@@ -22,8 +21,8 @@
   display: flex;
   flex-direction: row;
   padding-bottom: 12px;
-  width: 10cm;
-  height: 4.25cm;
+  width: 9cm;
+  height: 6cm;
 }
 
 .item-image{
@@ -37,7 +36,7 @@
 .item-image > img {
   width: 3.5cm;
   height: 3.5cm;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .item-info{
@@ -57,7 +56,7 @@
   flex-direction: row;
   line-height: 20px;
   width: 100%;
-} */
+}
 /* 
 .info-title{
   width: 50%;
