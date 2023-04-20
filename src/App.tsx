@@ -4,13 +4,13 @@ import ItemCard from "./components/item-card/ItemCard";
 import {IItemDetail} from "./interface/item/item";
 import { useReactToPrint } from "react-to-print";
 import * as XLSX from "xlsx";
-import logo from "../src/assets/logo.png";
+import logo_img from "../src/assets/logo.png";
 
 function Page({itemDetails, index, date}: {itemDetails:IItemDetail[], index: number, date: string}) {
   return (
     <div className="page">
       <div className="page-header">
-        <img className="logo" src={logo} alt="logo"></img>
+        <img className="logo" src={logo_img} alt="logo"></img>
         <div>BẢNG GIÁ HOA SỈ {date}</div>
       </div>
       <div className="page-content">
