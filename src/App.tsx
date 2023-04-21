@@ -5,7 +5,7 @@ import {IItemDetail} from "./interface/item/item";
 import { useReactToPrint } from "react-to-print";
 import * as XLSX from "xlsx";
 import logo_img from "../src/assets/logo.png";
-import { PDFDownloadLink, PDFViewer } from '@react-pdf/renderer';
+import { PDFDownloadLink } from '@react-pdf/renderer';
 import MyDoc from './components/item-doc/ItemDoc';
 
 function Page({itemDetails, index, date}: {itemDetails:IItemDetail[], index: number, date: string}) {
@@ -69,17 +69,17 @@ function App() {
   //   });
   // }, [setLoading, setText]);
 
-  const reactToPrintContent = React.useCallback(() => {
-    return componentRef.current;
-  }, []);
+  // const reactToPrintContent = React.useCallback(() => {
+  //   return componentRef.current;
+  // }, []);
 
-  const handlePrint = useReactToPrint({
-    content: reactToPrintContent,
-    documentTitle: "AwesomeFileName",
-    onBeforePrint: handleBeforePrint,
-    onAfterPrint: handleAfterPrint,
-    removeAfterPrint: true
-  });
+  // const handlePrint = useReactToPrint({
+  //   content: reactToPrintContent,
+  //   documentTitle: "AwesomeFileName",
+  //   onBeforePrint: handleBeforePrint,
+  //   onAfterPrint: handleAfterPrint,
+  //   removeAfterPrint: true
+  // });
 
   const perPage = 9
 
