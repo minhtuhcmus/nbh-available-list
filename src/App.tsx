@@ -5,6 +5,8 @@ import {IItemDetail} from "./interface/item/item";
 import { useReactToPrint } from "react-to-print";
 import * as XLSX from "xlsx";
 import logo_img from "../src/assets/logo.png";
+import { PDFDownloadLink, PDFViewer } from '@react-pdf/renderer';
+import MyDoc from './components/item-doc/ItemDoc';
 
 function Page({itemDetails, index, date}: {itemDetails:IItemDetail[], index: number, date: string}) {
   return (
@@ -138,6 +140,9 @@ function App() {
           Get PDF
         </button>
       </div>
+      <PDFDownloadLink document={<MyDoc itemDetails={itemDetails} date={date}/>} fileName="somename.pdf">
+      {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now!')}
+    </PDFDownloadLink>
       <div className="viewer" ref={componentRef}>
         {/*<div className="page">*/}
         {/*  <div className="company-info">*/}
