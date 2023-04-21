@@ -2,7 +2,7 @@ import React, {useRef, useState} from 'react';
 import './App.css';
 import ItemCard from "./components/item-card/ItemCard";
 import {IItemDetail} from "./interface/item/item";
-import { useReactToPrint } from "react-to-print";
+// import { useReactToPrint } from "react-to-print";
 import * as XLSX from "xlsx";
 import logo_img from "../src/assets/logo.png";
 import { PDFDownloadLink } from '@react-pdf/renderer';
@@ -44,13 +44,13 @@ function App() {
   const [itemDetails, setItemDetails] = useState<IItemDetail[]>([]);
   const [date, setDate] = useState('');
 
-  const handleAfterPrint = React.useCallback(() => {
-    console.log("`onAfterPrint` called"); // tslint:disable-line no-console
-  }, []);
-
-  const handleBeforePrint = React.useCallback(() => {
-    console.log("`onBeforePrint` called"); // tslint:disable-line no-console
-  }, []);
+  // const handleAfterPrint = React.useCallback(() => {
+  //   console.log("`onAfterPrint` called"); // tslint:disable-line no-console
+  // }, []);
+  //
+  // const handleBeforePrint = React.useCallback(() => {
+  //   console.log("`onBeforePrint` called"); // tslint:disable-line no-console
+  // }, []);
 
   // const handleOnBeforeGetContent = React.useCallback(() => {
   //   console.log("`onBeforeGetContent` called"); // tslint:disable-line no-console
