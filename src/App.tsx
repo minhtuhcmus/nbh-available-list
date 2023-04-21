@@ -10,8 +10,8 @@ function Page({itemDetails, index, date}: {itemDetails:IItemDetail[], index: num
   return (
     <div className="page">
       <div className="page-header">
-        <img className="logo" src={logo_img} alt="logo"></img>
-        <div>BẢNG GIÁ HOA SỈ {date}</div>
+        <img className="logo" src={logo_img} alt="logo"/>
+        <div className="date">BẢNG GIÁ HOA SỈ {date}</div>
       </div>
       <div className="page-content">
         {
@@ -139,6 +139,14 @@ function App() {
         </button>
       </div>
       <div className="viewer" ref={componentRef}>
+        {/*<div className="page">*/}
+        {/*  <div className="company-info">*/}
+        {/*    <span>CÔNG TY TNHH NHÀ BÁN HOA</span>*/}
+        {/*    <span>Kho hàng: 45 đường số 29, P. An Khánh, Quận 2, TP Thủ Đức</span>*/}
+        {/*    <span>Hotline đặt hàng: (028)7300 7299 - 0935 177701 (Zalo/Viber) - Hotline giao nhận: 078 229 7799</span>*/}
+        {/*    <span>Email: sales1@nhabanhoa.com</span>*/}
+        {/*  </div>*/}
+        {/*</div>*/}
         {getPageContent()}
       </div>
       {/*<PDFDownloadLink document={<MyDoc  itemDetails={itemDetails}/>} fileName="somename.pdf">*/}

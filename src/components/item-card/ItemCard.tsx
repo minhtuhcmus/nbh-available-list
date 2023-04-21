@@ -14,28 +14,46 @@ function ItemCard({itemDetail}: { itemDetail: IItemDetail }) {
         </div>
         <div className="item-info">
           <div className="item-price item-detail">
-            <div className="info-title">Giá:{` ${itemDetail.price}`}</div>
-            {/* <div className="info-detail"></div> */}
+            <div className="info-title">
+              <span>Giá</span>
+              <span>:</span>
+            </div>
+            { itemDetail.price && <div className="info-detail">{` ${itemDetail.price}`}</div>}
           </div>
           <div className="item-origin item-detail">
-            <div className="info-title">Xuất xứ:{` ${itemDetail.origin}`}</div>
-            {/* <div className="info-detail">{itemDetail.origin}</div> */}
+            <div className="info-title">
+              <span>Xuất xứ</span>
+              <span>:</span>
+            </div>
+            { itemDetail.origin && <div className="info-detail">{` ${itemDetail.origin}`}</div>}
           </div>
           <div className="item-length item-detail">
-            <div className="info-title">Chiều dài:{` ${itemDetail.length}`}</div>
-            {/* <div className="info-detail">{itemDetail.length}</div> */}
+            <div className="info-title">
+              <span>Chiều dài</span>
+              <span>:</span>
+            </div>
+            { itemDetail.length &&<div className="info-detail">{` ${itemDetail.length}`}</div>}
           </div>
           <div className="item-packaging item-detail">
-            <div className="info-title">Quy cách:{` ${itemDetail.packaging}`}</div>
-            {/* <div className="info-detail">{itemDetail.packaging}</div> */}
+            <div className="info-title">
+              <span>Quy cách</span>
+              <span>:</span>
+            </div>
+            { itemDetail.packaging && <div className="info-detail">{` ${itemDetail.packaging}`}</div>}
           </div>
           <div className="item-orderby item-detail">
-            <div className="info-title">Đặt theo SL:{` ${itemDetail.orderBy}`}</div>
-            {/* <div className="info-detail">{itemDetail.orderBy}</div> */}
+            <div className="info-title">
+              <span>Đặt theo SL</span>
+              <span>:</span>
+            </div>
+            { itemDetail.orderBy && <div className="info-detail">{` ${itemDetail.orderBy}`}</div>}
           </div>
           <div className="item-note item-detail">
-            <div className="info-title">Ghi chú:{` ${itemDetail.note}`}</div>
-            {/* <div className="info-detail">{itemDetail.note}</div> */}
+            <div className="info-title">
+              <span>Ghi chú</span>
+              <span>:</span>
+            </div>
+            { itemDetail.note &&<div className="info-detail">{` ${itemDetail.note}`}</div>}
           </div>
         </div>
       </div>

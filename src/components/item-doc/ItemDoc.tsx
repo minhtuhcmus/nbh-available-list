@@ -62,46 +62,50 @@ const styles = StyleSheet.create({
   }
 });
 
+function getPageContent({itemDetails}: {itemDetails: IItemDetail[]}) {
+  return itemDetails.map(info => <View style={styles.card}>
+    <View style={styles.name}>
+      <Text>{info.name.toLocaleUpperCase("vn")}</Text>
+    </View>
+    <View style={styles.imageAndInfo}>
+      <View style={styles.image}>
+        <Image style={styles.img} src={info.images}></Image>
+      </View>
+      <View style={styles.info}>
+        <View style={styles.infoDetail}>
+          <Text style={styles.title}>Giá</Text>
+          <Text style={[styles.detail, {fontWeight: 'black'}]}>{info.price}</Text>
+        </View>
+        <View style={styles.infoDetail}>
+          <Text style={styles.title}>Hiện có</Text>
+          <Text style={styles.detail}>{info.available}</Text>
+        </View>
+        <View style={styles.infoDetail}>
+          <Text style={styles.title}>Quy cách</Text>
+          <Text style={styles.detail}>{info.packaging}</Text>
+        </View>
+        <View style={styles.infoDetail}>
+          <Text style={styles.title}>Màu sắc</Text>
+          <Text style={styles.detail}>{info.color}</Text>
+        </View>
+        <View style={styles.infoDetail}>
+          <Text style={styles.title}>Xuất xứ</Text>
+          <Text style={styles.detail}>{info.origin}</Text>
+        </View>
+        <View style={styles.infoDetail}>
+          <Text style={styles.title}>Độ dài</Text>
+          <Text style={styles.detail}>{info.length}</Text>
+        </View>
+      </View>
+    </View>
+  </View>)
+}
+
 function MyDoc ({itemDetails}: {itemDetails: IItemDetail[]}) {
   return (
     <Document>
-      <Page size="A4" style={styles.page} wrap>
-        {itemDetails.map(info => <View style={styles.card}>
-          <View style={styles.name}>
-            <Text>{info.name.toLocaleUpperCase("vn")}</Text>
-          </View>
-          <View style={styles.imageAndInfo}>
-            <View style={styles.image}>
-              <Image style={styles.img} src={info.images}></Image>
-            </View>
-            <View style={styles.info}>
-              <View style={styles.infoDetail}>
-                <Text style={styles.title}>Giá</Text>
-                <Text style={[styles.detail, {fontWeight: 'black'}]}>{info.price}</Text>
-              </View>
-              <View style={styles.infoDetail}>
-                <Text style={styles.title}>Hiện có</Text>
-                <Text style={styles.detail}>{info.available}</Text>
-              </View>
-              <View style={styles.infoDetail}>
-                <Text style={styles.title}>Quy cách</Text>
-                <Text style={styles.detail}>{info.packaging}</Text>
-              </View>
-              <View style={styles.infoDetail}>
-                <Text style={styles.title}>Màu sắc</Text>
-                <Text style={styles.detail}>{info.color}</Text>
-              </View>
-              <View style={styles.infoDetail}>
-                <Text style={styles.title}>Xuất xứ</Text>
-                <Text style={styles.detail}>{info.origin}</Text>
-              </View>
-              <View style={styles.infoDetail}>
-                <Text style={styles.title}>Độ dài</Text>
-                <Text style={styles.detail}>{info.length}</Text>
-              </View>
-            </View>
-          </View>
-        </View>)}
+      <Page size="A4" orientation="landscape" style={styles.page} wrap>
+        {}
       </Page>
     </Document>
   )
