@@ -136,9 +136,9 @@ function App() {
             onChange={e => setDate(e.target.value)}
           />
         </div>
-        <button className="get-pdf-btn" onClick={handlePrint}>
-          Get PDF
-        </button>
+        {/*<button className="get-pdf-btn" onClick={handlePrint}>*/}
+        {/*  Get PDF*/}
+        {/*</button>*/}
       </div>
       <PDFDownloadLink document={<MyDoc itemDetails={itemDetails} date={date}/>} fileName="somename.pdf">
       {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now!')}

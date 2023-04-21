@@ -1,18 +1,58 @@
 import {Document, Page, StyleSheet, View, Text, Image, Font } from "@react-pdf/renderer";
 import {IItemDetail} from "../../interface/item/item";
+import logo_img from "../../assets/logo.png";
 
 Font.register({
   family: "Roboto",
   fonts: [
-    {src: 'https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.10/fonts/Roboto/roboto-light-webfont.ttf'}
+    {
+      src: 'https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.10/fonts/Roboto/roboto-bold-webfont.ttf',
+      fontWeight: 'bold'
+    },
+    {
+      src: 'https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.10/fonts/Roboto/roboto-light-webfont.ttf',
+      fontWeight: 'light'
+    },
+    {
+      src: 'https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.10/fonts/Roboto/roboto-black-webfont.ttf',
+      fontWeight: 'black'
+    },
+    {
+      src: 'https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.10/fonts/Roboto/roboto-medium-webfont.woff',
+      fontWeight: 'medium'
+    },
+    {
+      src: 'https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.10/fonts/Roboto/roboto-regular-webfont.ttf',
+      fontWeight: 'normal'
+    }
   ]  
 });
 
 const styles = StyleSheet.create({
   page: {
+    display: 'flex',
+    flexDirection: 'column',
+    fontFamily: 'Roboto',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  pageHeader: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between'
+  },
+  pageContent: {
+    display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    fontFamily: 'Roboto'
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  pageFooter: {
+    marginTop: '0.5cm',
+    fontSize: 6
   },
   card: {
     width: '9cm',
@@ -21,17 +61,21 @@ const styles = StyleSheet.create({
     border: '1 solid black'
   },
   name:{
-    fontSize: '10',
+    fontSize: '12',
+    padding: '6px',
     textAlign: 'center',
-    padding: '6 0 6 0',
-    fontWeight: 'black'
+    fontWeight: 'bold',
+    height: '1cm'
   },
   imageAndInfo: {
     flexDirection: 'row',
-    width: '100%'
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '5cm'
   },
   image: {
-    width: '50%',
+    width: '55%',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center'
@@ -43,60 +87,100 @@ const styles = StyleSheet.create({
   },
   info: {
     flexDirection: 'column',
-    width: '50%',
+    width: '45%',
     marginBottom: '6'
   },
   infoDetail:{
+    display:'flex',
     flexDirection: 'row',
     width: '100%',
     marginTop: '2'
   },
   title: {
-    width: '50%',
+    width: '45%',
     textAlign: 'left',
-    fontSize: '6'
+    fontSize: '8',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between'
   },
   detail: {
-    width: '50%',
+    width: '55%',
     textAlign: 'left',
-    fontSize: '6'
+    fontSize: '8'
+  },
+  logo: {
+    width: '1.5cm',
+    height: '1.5cm',
+    objectFit: 'contain',
+    marginLeft: '2cm'
+  },
+  date: {
+    fontSize: '10',
+    fontWeight: 'bold',
+    marginRight: '2cm'
+  },
+  company: {
+    display: 'flex',
+    flexDirection: 'column',
+    fontSize: 6,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: '2cm'
   }
 });
 
 function ItemCard({itemDetail}: {itemDetail:IItemDetail}) {
   return (
-    <View style={styles.card}>
-        <View style={styles.name}>
-          <Text>{itemDetail.name.toLocaleUpperCase("vn")}</Text>
-        </View>
+    <View style={[styles.card, {opacity: itemDetail.images ? 1 : 0}]}>
+      <Text style={styles.name}>{itemDetail.name.toLocaleUpperCase("vn")}</Text>
       <View style={styles.imageAndInfo}>
         <View style={styles.image}>
-          {/* <Image style={styles.img} src={itemDetail.images}></Image> */}
+          {itemDetail.images && <Image style={styles.img} src={itemDetail.images}></Image>}
         </View>
         <View style={styles.info}>
           <View style={styles.infoDetail}>
-            <Text style={styles.title}>Giá</Text>
+            <View style={styles.title}>
+              <Text>Giá</Text>
+              <Text>{`: `}</Text>
+            </View>
             <Text style={[styles.detail, {fontWeight: 'black'}]}>{itemDetail.price}</Text>
           </View>
           <View style={styles.infoDetail}>
-            <Text style={styles.title}>Hiện có</Text>
-            <Text style={styles.detail}>{itemDetail.available}</Text>
-          </View>
-          <View style={styles.infoDetail}>
-            <Text style={styles.title}>Quy cách</Text>
-            <Text style={styles.detail}>{itemDetail.packaging}</Text>
-          </View>
-          <View style={styles.infoDetail}>
-            <Text style={styles.title}>Màu sắc</Text>
-            <Text style={styles.detail}>{itemDetail.color}</Text>
-          </View>
-          <View style={styles.infoDetail}>
-            <Text style={styles.title}>Xuất xứ</Text>
+            <View style={styles.title}>
+              <Text>Xuất xứ</Text>
+              <Text>{`: `}</Text>
+            </View>
             <Text style={styles.detail}>{itemDetail.origin}</Text>
           </View>
           <View style={styles.infoDetail}>
-            <Text style={styles.title}>Độ dài</Text>
+            <View style={styles.title}>
+              <Text>Chiều dài</Text>
+              <Text>{`: `}</Text>
+            </View>
             <Text style={styles.detail}>{itemDetail.length}</Text>
+          </View>
+          <View style={styles.infoDetail}>
+            <View style={styles.title}>
+              <Text>Quy cách</Text>
+              <Text>{`: `}</Text>
+            </View>
+            <Text style={styles.detail}>{itemDetail.packaging}</Text>
+          </View>
+          <View style={styles.infoDetail}>
+            <View style={styles.title}>
+              <Text>Đặt theo SL</Text>
+              <Text>{`: `}</Text>
+            </View>
+            <Text style={styles.detail}>{itemDetail.orderBy}</Text>
+          </View>
+          <View style={styles.infoDetail}>
+            <View style={styles.title}>
+              <Text>Ghi chú</Text>
+              <Text>{`: `}</Text>
+            </View>
+            <Text style={styles.detail}>{itemDetail.note}</Text>
           </View>
         </View>
       </View>
@@ -107,9 +191,24 @@ function ItemCard({itemDetail}: {itemDetail:IItemDetail}) {
 function MyPage({itemDetails, index, date}: {itemDetails: IItemDetail[], index: number, date: string}) {
   return (
     <Page size="A4" orientation="landscape" style={styles.page}>
-      {
-        itemDetails.map((itemDetail: IItemDetail) => <ItemCard itemDetail={itemDetail}/>)
-      }
+      <View style={styles.pageHeader}>
+        <Image style={styles.logo} src={logo_img}/>
+        <View style={styles.company}>
+          <Text>CÔNG TY TNHH NHÀ BÁN HOA</Text>
+          <Text>Kho hàng: 45 đường số 29, P. An Khánh, Quận 2, TP Thủ Đức</Text>
+          <Text>Hotline đặt hàng: (028)7300 7299 - 0935 177701 (Zalo/Viber) - Hotline giao nhận: 078 229 7799</Text>
+          <Text>Email: sales1@nhabanhoa.com</Text>
+        </View>
+        <Text style={styles.date}>{`BẢNG GIÁ HOA SỈ NGÀY ${date}`}</Text>
+      </View>
+      <View style={styles.pageContent}>
+        {
+          itemDetails.map((itemDetail: IItemDetail) => <ItemCard itemDetail={itemDetail}/>)
+        }
+      </View>
+      <Text style={styles.pageFooter}>
+        {index+1}
+      </Text>
     </Page>
   );
 }
