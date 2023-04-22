@@ -81,8 +81,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   img: {
-    width: '60',
-    height: '60',
+    width: '4.5cm',
+    height: '4.5cm',
     objectFit: 'cover'
   },
   info: {
