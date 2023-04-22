@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     fontFamily: 'Roboto',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'space-evenly'
   },
   pageHeader: {
     width: '100%',
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   },
   pageFooter: {
     marginTop: '0.5cm',
-    fontSize: 6
+    fontSize: 10
   },
   card: {
     width: '9cm',
@@ -119,15 +119,15 @@ const styles = StyleSheet.create({
   date: {
     fontSize: '10',
     fontWeight: 'bold',
-    marginRight: '2cm'
+    marginTop: '1cm'
   },
   company: {
     display: 'flex',
     flexDirection: 'column',
-    fontSize: 6,
+    fontSize: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    marginLeft: '2cm'
+    marginRight: '5.5cm'
   }
 });
 
@@ -196,10 +196,12 @@ function MyPage({itemDetails, index, date}: {itemDetails: IItemDetail[], index: 
         <View style={styles.company}>
           <Text>CÔNG TY TNHH NHÀ BÁN HOA</Text>
           <Text>Kho hàng: 45 đường số 29, P. An Khánh, Quận 2, TP Thủ Đức</Text>
-          <Text>Hotline đặt hàng: (028)7300 7299 - 0935 177701 (Zalo/Viber) - Hotline giao nhận: 078 229 7799</Text>
+          <Text>Hotline đặt hàng: (028)7300 7299 - 0935 177701 (Zalo/Viber)</Text>
+          <Text>Hotline giao nhận: 078 229 7799</Text>
           <Text>Email: sales1@nhabanhoa.com</Text>
+          <Text style={styles.date}>{`BẢNG GIÁ HOA SỈ NGÀY ${date}`}</Text>
         </View>
-        <Text style={styles.date}>{`BẢNG GIÁ HOA SỈ NGÀY ${date}`}</Text>
+
       </View>
       <View style={styles.pageContent}>
         {

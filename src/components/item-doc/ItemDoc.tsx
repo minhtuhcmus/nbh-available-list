@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     fontFamily: 'Roboto',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'space-evenly'
   },
   pageHeader: {
     width: '100%',
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   },
   pageFooter: {
     marginTop: '0.5cm',
-    fontSize: 6
+    fontSize: 8
   },
   card: {
     width: '9cm',
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
   company: {
     display: 'flex',
     flexDirection: 'column',
-    fontSize: 6,
+    fontSize: 8,
     alignItems: 'center',
     justifyContent: 'center',
     marginLeft: '2cm'
