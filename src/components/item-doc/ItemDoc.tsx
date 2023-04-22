@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     fontFamily: 'Roboto',
     alignItems: 'center',
-    justifyContent: 'space-evenly'
+    justifyContent: 'space-between'
   },
   pageHeader: {
     width: '100%',
@@ -51,14 +51,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   pageFooter: {
-    marginTop: '0.5cm',
     fontSize: 8
   },
   card: {
-    width: '9cm',
+    width: '9.5cm',
     height: '6cm',
     flexDirection: 'column',
-    border: '1 solid black'
+    border: '0.5 solid black'
   },
   name:{
     fontSize: '12',
@@ -75,7 +74,7 @@ const styles = StyleSheet.create({
     height: '5cm'
   },
   image: {
-    width: '55%',
+    width: '50%',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center'
@@ -83,11 +82,11 @@ const styles = StyleSheet.create({
   img: {
     width: '4.5cm',
     height: '4.5cm',
-    objectFit: 'cover'
+    objectFit: 'contain'
   },
   info: {
     flexDirection: 'column',
-    width: '45%',
+    width: '50%',
     marginBottom: '6'
   },
   infoDetail:{
@@ -97,7 +96,7 @@ const styles = StyleSheet.create({
     marginTop: '2'
   },
   title: {
-    width: '45%',
+    width: '40%',
     textAlign: 'left',
     fontSize: '8',
     display: 'flex',
@@ -106,28 +105,29 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   detail: {
-    width: '55%',
+    width: '60%',
     textAlign: 'left',
     fontSize: '8'
   },
   logo: {
-    width: '1.5cm',
-    height: '1.5cm',
+    width: '2.5cm',
+    height: '2.5cm',
     objectFit: 'contain',
     marginLeft: '2cm'
   },
   date: {
-    fontSize: '10',
+    fontSize: '14',
     fontWeight: 'bold',
-    marginRight: '2cm'
+    marginLeft: '2cm'
   },
   company: {
     display: 'flex',
     flexDirection: 'column',
     fontSize: 8,
-    alignItems: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'center',
-    marginLeft: '2cm'
+    marginRight: '2cm',
+    textAlign: 'right'
   }
 });
 
@@ -188,18 +188,19 @@ function ItemCard({itemDetail}: {itemDetail:IItemDetail}) {
   );
 }
 
-function MyPage({itemDetails, index, date}: {itemDetails: IItemDetail[], index: number, date: string}) {
+function MyPage({itemDetails, index, date, totalPage}: {itemDetails: IItemDetail[], index: number, date: string, totalPage: number}) {
   return (
     <Page size="A4" orientation="landscape" style={styles.page}>
       <View style={styles.pageHeader}>
         <Image style={styles.logo} src={logo_img}/>
+        <Text style={styles.date}>{`BẢNG GIÁ HOA SỈ NGÀY ${date}`}</Text>
         <View style={styles.company}>
-          <Text>CÔNG TY TNHH NHÀ BÁN HOA</Text>
+          <Text style={{fontWeight: 'bold'}}>CÔNG TY TNHH NHÀ BÁN HOA</Text>
           <Text>Kho hàng: 45 đường số 29, P. An Khánh, Quận 2, TP Thủ Đức</Text>
-          <Text>Hotline đặt hàng: (028)7300 7299 - 0935 177701 (Zalo/Viber) - Hotline giao nhận: 078 229 7799</Text>
+          <Text>Hotline đặt hàng: (028)7300 7299 - 0935 177701 (Zalo/Viber)</Text>
+          <Text>Hotline giao nhận: 078 229 7799</Text>
           <Text>Email: sales1@nhabanhoa.com</Text>
         </View>
-        <Text style={styles.date}>{`BẢNG GIÁ HOA SỈ NGÀY ${date}`}</Text>
       </View>
       <View style={styles.pageContent}>
         {
@@ -207,7 +208,7 @@ function MyPage({itemDetails, index, date}: {itemDetails: IItemDetail[], index: 
         }
       </View>
       <Text style={styles.pageFooter}>
-        {index+1}
+        {index+1}/{totalPage}
       </Text>
     </Page>
   );
@@ -241,7 +242,7 @@ function getPageContent(itemDetails: IItemDetail[], date: string) {
     }
     console.log(i, pagesData)
   }
-  return pagesData.map((pageData, index) => <MyPage itemDetails={pageData} index={index} date={date}/>)
+  return pagesData.map((pageData, index) => <MyPage itemDetails={pageData} index={index} date={date} totalPage={pageNum}/>)
 }
 
 function MyDoc ({itemDetails, date}: {itemDetails: IItemDetail[], date: string}) {
