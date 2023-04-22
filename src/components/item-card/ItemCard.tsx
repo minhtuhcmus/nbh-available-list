@@ -10,7 +10,7 @@ function ItemCard({itemDetail}: { itemDetail: IItemDetail }) {
       </div>
       <div className="item-detail-info">
         <div className="item-image">
-          <img src={`https://drive.google.com/uc?export=view&id=${itemDetail.images?.slice(32, 65)}`} alt="item-avatar"/>
+          <img src={itemDetail.images} alt="item-avatar"/>
         </div>
         <div className="item-info">
           <div className="item-price item-detail">

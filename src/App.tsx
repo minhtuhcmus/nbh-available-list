@@ -7,6 +7,8 @@ import * as XLSX from "xlsx";
 import logo_img from "../src/assets/logo.png";
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import MyDoc from './components/item-doc/ItemDoc';
+import MyDocP from './components/item-doc/ItemDocP';
+
 
 function Page({itemDetails, index, date}: {itemDetails:IItemDetail[], index: number, date: string}) {
   return (
@@ -141,8 +143,11 @@ function App() {
         {/*</button>*/}
       </div>
       <PDFDownloadLink document={<MyDoc itemDetails={itemDetails} date={date}/>} fileName="somename.pdf">
-      {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now!')}
-    </PDFDownloadLink>
+        {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now landscape!')}
+      </PDFDownloadLink>
+      <PDFDownloadLink document={<MyDocP itemDetails={itemDetails} date={date}/>} fileName="somename.pdf">
+        {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now portrait!')}
+      </PDFDownloadLink>
       <div className="viewer" ref={componentRef}>
         {/*<div className="page">*/}
         {/*  <div className="company-info">*/}
