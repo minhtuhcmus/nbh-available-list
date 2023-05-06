@@ -6,7 +6,7 @@ export interface IItemDetail {
   price: string;
   length: string;
   color: string;
-  images: string;
+  images?: string;
   orderBy: string;
   note: string;
 }

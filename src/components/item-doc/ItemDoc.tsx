@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     border: '0.5 solid black'
   },
   name:{
-    fontSize: '12',
+    fontSize: '14',
     padding: '6px',
     textAlign: 'center',
     fontWeight: 'bold',
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
   title: {
     width: '40%',
     textAlign: 'left',
-    fontSize: '8',
+    fontSize: '10',
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'flex-start',
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
   detail: {
     width: '60%',
     textAlign: 'left',
-    fontSize: '8'
+    fontSize: '10'
   },
   logo: {
     width: '2.5cm',

@@ -1,6 +1,7 @@
 import React from 'react';
 import "./style.css";
 import {IItemDetail} from "../../interface/item/item";
+import { countries, flags } from '../../const/flag';
 
 function ItemCard({itemDetail}: { itemDetail: IItemDetail }) {
   return (
@@ -43,7 +44,7 @@ function ItemCard({itemDetail}: { itemDetail: IItemDetail }) {
           </div>
           <div className="item-orderby item-detail">
             <div className="info-title">
-              <span>Đặt theo SL</span>
+              <span>SL đặt</span>
               <span>:</span>
             </div>
             { itemDetail.orderBy && <div className="info-detail">{` ${itemDetail.orderBy}`}</div>}

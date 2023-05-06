@@ -1,6 +1,7 @@
 import {Document, Page, StyleSheet, View, Text, Image, Font } from "@react-pdf/renderer";
 import {IItemDetail} from "../../interface/item/item";
 import logo_img from "../../assets/logo.png";
+import { countries, flags } from "../../const/flag";
 
 Font.register({
   family: "Roboto",
@@ -61,8 +62,8 @@ const styles = StyleSheet.create({
     border: '0.5 solid black'
   },
   name:{
-    fontSize: '12',
-    padding: '6px',
+    fontSize: '14',
+    paddingTop: '6px',
     textAlign: 'center',
     fontWeight: 'bold',
     height: '1cm'
@@ -99,7 +100,7 @@ const styles = StyleSheet.create({
   title: {
     width: '40%',
     textAlign: 'left',
-    fontSize: '8',
+    fontSize: 11,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'flex-start',
@@ -108,7 +109,11 @@ const styles = StyleSheet.create({
   detail: {
     width: '60%',
     textAlign: 'left',
-    fontSize: '8'
+    fontSize: 11,
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'center'
   },
   logo: {
     width: '2.5cm',
@@ -138,7 +143,7 @@ const styles = StyleSheet.create({
 
 function ItemCard({itemDetail}: {itemDetail:IItemDetail}) {
   return (
-    <View style={[styles.card, {opacity: itemDetail.images ? 1 : 0}]}>
+    <View style={[styles.card, {opacity: itemDetail.name !== 'dump' ? 1 : 0}]}>
       <Text style={styles.name}>{itemDetail.name.toLocaleUpperCase("vn")}</Text>
       <View style={styles.imageAndInfo}>
         <View style={styles.image}>
@@ -150,7 +155,7 @@ function ItemCard({itemDetail}: {itemDetail:IItemDetail}) {
               <Text>Giá</Text>
               <Text>{`: `}</Text>
             </View>
-            <Text style={[styles.detail, {fontWeight: 'black'}]}>{itemDetail.price}</Text>
+            <Text style={[styles.detail, {fontWeight: 'black', fontSize: itemDetail.price.length > 16 ? 8 : 11}]}>{itemDetail.price}</Text>
           </View>
           <View style={styles.infoDetail}>
             <View style={styles.title}>
@@ -175,7 +180,7 @@ function ItemCard({itemDetail}: {itemDetail:IItemDetail}) {
           </View>
           <View style={styles.infoDetail}>
             <View style={styles.title}>
-              <Text>Đặt theo SL</Text>
+              <Text>SL đặt</Text>
               <Text>{`: `}</Text>
             </View>
             <Text style={styles.detail}>{itemDetail.orderBy}</Text>

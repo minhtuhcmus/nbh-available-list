@@ -143,9 +143,9 @@ function App() {
         {/*  Get PDF*/}
         {/*</button>*/}
       </div>
-      <PDFDownloadLink document={<MyDoc itemDetails={itemDetails} date={date}/>} fileName="somename.pdf">
+      {/* <PDFDownloadLink document={<MyDoc itemDetails={itemDetails} date={date}/>} fileName="somename.pdf">
         {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now landscape!')}
-      </PDFDownloadLink>
+      </PDFDownloadLink> */}
       <PDFDownloadLink document={<MyDocP itemDetails={itemDetails} date={date}/>} fileName="somename.pdf">
         {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now portrait!')}
       </PDFDownloadLink>
