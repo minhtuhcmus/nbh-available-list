@@ -1,7 +1,7 @@
 import React from 'react';
 import "./style.css";
 import {IItemDetail} from "../../interface/item/item";
-import { countries, flags } from '../../const/flag';
+// import { countries, flags } from '../../const/flag';
 
 function ItemCard({itemDetail}: { itemDetail: IItemDetail }) {
   return (

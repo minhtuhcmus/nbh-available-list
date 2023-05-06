@@ -8,7 +8,7 @@ import logo_img from "../src/assets/logo.png";
 import { PDFDownloadLink } from '@react-pdf/renderer';
 // import MyDoc from './components/item-doc/ItemDoc';
 import MyDocP from './components/item-doc/ItemDocP';
-import MyDoc from './components/item-doc/ItemDoc';
+// import MyDoc from './components/item-doc/ItemDoc';
 
 
 function Page({itemDetails, index, date}: {itemDetails:IItemDetail[], index: number, date: string}) {

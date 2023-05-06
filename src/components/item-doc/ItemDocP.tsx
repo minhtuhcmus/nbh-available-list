@@ -1,7 +1,7 @@
 import {Document, Page, StyleSheet, View, Text, Image, Font } from "@react-pdf/renderer";
 import {IItemDetail} from "../../interface/item/item";
 import logo_img from "../../assets/logo.png";
-import { countries, flags } from "../../const/flag";
+// import { countries, flags } from "../../const/flag";
 
 Font.register({
   family: "Roboto",
