@@ -1,6 +1,8 @@
 import {Document, Page, StyleSheet, View, Text, Image, Font } from "@react-pdf/renderer";
 import {IItemDetail} from "../../interface/item/item";
 import logo_img from "../../assets/logo.png";
+import { ToEngOrigin, ToEngPackaging } from "../../utils/ToEng";
+// import { countries, flags } from "../../const/flag";
 
 Font.register({
   family: "Roboto",
@@ -34,14 +36,14 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     fontFamily: 'Roboto',
     alignItems: 'center',
-    justifyContent: 'space-between'
+    justifyContent: 'space-evenly'
   },
   pageHeader: {
     width: '100%',
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'space-between'
+    justifyContent: 'space-evenly'
   },
   pageContent: {
     display: 'flex',
@@ -51,17 +53,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   pageFooter: {
-    fontSize: 8
+    marginTop: '0.25cm',
+    fontSize: 10
   },
   card: {
-    width: '9.5cm',
+    width: '10cm',
     height: '6cm',
     flexDirection: 'column',
     border: '0.5 solid black'
   },
   name:{
-    fontSize: '12',
-    padding: '6px',
+    fontSize: '14',
+    paddingTop: '6px',
     textAlign: 'center',
     fontWeight: 'bold',
     height: '1cm'
@@ -98,7 +101,7 @@ const styles = StyleSheet.create({
   title: {
     width: '40%',
     textAlign: 'left',
-    fontSize: '11',
+    fontSize: 11,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'flex-start',
@@ -107,34 +110,42 @@ const styles = StyleSheet.create({
   detail: {
     width: '60%',
     textAlign: 'left',
-    fontSize: '11'
+    fontSize: 11,
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'center'
   },
   logo: {
     width: '2.5cm',
     height: '2.5cm',
-    objectFit: 'contain',
-    marginLeft: '2cm'
+    objectFit: 'contain'
   },
   date: {
-    fontSize: '14',
+    fontSize: '16',
     fontWeight: 'bold',
-    marginLeft: '2cm'
+    marginTop: '0.5cm'
+  },
+  companyInfo:{
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
   },
   company: {
     display: 'flex',
     flexDirection: 'column',
-    fontSize: 8,
+    fontSize: 10,
     alignItems: 'flex-start',
     justifyContent: 'center',
-    marginRight: '2cm',
-    textAlign: 'right'
+    marginLeft: '2cm'
   }
 });
 
 function ItemCard({itemDetail}: {itemDetail:IItemDetail}) {
   return (
     <View style={[styles.card, {opacity: itemDetail.name !== 'dump' ? 1 : 0}]}>
-      <Text style={styles.name}>{itemDetail.name.toLocaleUpperCase("vn")}</Text>
+      <Text style={styles.name}>{itemDetail.engName?.toLocaleUpperCase("en")}</Text>
       <View style={styles.imageAndInfo}>
         <View style={styles.image}>
           {itemDetail.images && <Image style={styles.img} src={itemDetail.images}></Image>}
@@ -142,45 +153,51 @@ function ItemCard({itemDetail}: {itemDetail:IItemDetail}) {
         <View style={styles.info}>
           <View style={styles.infoDetail}>
             <View style={styles.title}>
-              <Text>Giá</Text>
+              <Text>Price</Text>
               <Text>{`: `}</Text>
             </View>
-            <Text style={[styles.detail, {fontWeight: 'black', fontSize: itemDetail.price.length > 16 ? 8 : 11}]}>{itemDetail.price}</Text>
+            {itemDetail.price && <Text style={[styles.detail, {fontWeight: 'black', fontSize: itemDetail.price?.length > 16 ? 8 : 11}]}>{ToEngPackaging(itemDetail.price)}</Text>}
           </View>
           <View style={styles.infoDetail}>
             <View style={styles.title}>
-              <Text>Xuất xứ</Text>
+              <Text>Origin</Text>
               <Text>{`: `}</Text>
             </View>
-            <Text style={styles.detail}>{itemDetail.origin}</Text>
+            {itemDetail.origin && <Text style={styles.detail}>{ToEngOrigin(itemDetail.origin)}</Text>}
           </View>
           <View style={styles.infoDetail}>
             <View style={styles.title}>
-              <Text>Chiều dài</Text>
+              <Text>Length</Text>
               <Text>{`: `}</Text>
             </View>
             <Text style={styles.detail}>{itemDetail.length}</Text>
           </View>
           <View style={styles.infoDetail}>
             <View style={styles.title}>
-              <Text>Quy cách</Text>
+              <Text>Packaging</Text>
               <Text>{`: `}</Text>
             </View>
-            <Text style={styles.detail}>{itemDetail.packaging}</Text>
+            <Text style={styles.detail}>{ToEngPackaging(itemDetail.packaging ? itemDetail.packaging : "")}</Text>
           </View>
           <View style={styles.infoDetail}>
             <View style={styles.title}>
-              <Text>SL đặt</Text>
+              <Text>Order By</Text>
               <Text>{`: `}</Text>
             </View>
-            <Text style={styles.detail}>{itemDetail.orderBy}</Text>
+            {itemDetail.orderBy && <Text style={styles.detail}>{ToEngPackaging(itemDetail.orderBy)}</Text>}
           </View>
           <View style={styles.infoDetail}>
             <View style={styles.title}>
-              <Text>Ghi chú</Text>
+              <Text>Note</Text>
               <Text>{`: `}</Text>
             </View>
-            <Text style={styles.detail}>{itemDetail.note}</Text>
+            {itemDetail.engNote && <Text style={[
+              styles.detail, 
+              {
+                color: itemDetail.engNote?.includes('BUY 1 GET 1') ? '#98300e' : 'black', 
+                backgroundColor: itemDetail.engNote?.includes('BUY 1 GET 1') ? '#F5e7a2' : 'white',
+                fontWeight: itemDetail.engNote?.includes('BUY 1 GET 1') ? 'bold' : 'normal'
+              }]}>{itemDetail.engNote}</Text>}
           </View>
         </View>
       </View>
@@ -190,17 +207,19 @@ function ItemCard({itemDetail}: {itemDetail:IItemDetail}) {
 
 function MyPage({itemDetails, index, date, totalPage}: {itemDetails: IItemDetail[], index: number, date: string, totalPage: number}) {
   return (
-    <Page size="A4" orientation="landscape" style={styles.page}>
+    <Page size="A4" orientation="portrait" style={styles.page}>
       <View style={styles.pageHeader}>
-        <Image style={styles.logo} src={logo_img}/>
-        <Text style={styles.date}>{`BẢNG GIÁ HOA SỈ NGÀY ${date}`}</Text>
-        <View style={styles.company}>
-          <Text style={{fontWeight: 'bold'}}>CÔNG TY TNHH NHÀ BÁN HOA</Text>
-          <Text>Kho hàng: 45 đường số 29, P. An Khánh, Quận 2, TP Thủ Đức</Text>
-          <Text>Hotline đặt hàng: (028)7300 7299 - 0935 177701 (Zalo/Viber)</Text>
-          <Text>Hotline giao nhận: 078 229 7799</Text>
-          <Text>Email: sales1@nhabanhoa.com</Text>
+        <View style={styles.companyInfo}>
+          <Image style={styles.logo} src={logo_img}/>
+          <View style={styles.company}>
+            <Text style={{fontWeight: 'bold'}}>NHA BAN HOA LIMITED COMPANY</Text>
+            <Text>Warehouse: No.45 29 street, An Khanh Ward, District 2, Thu Duc City</Text>
+            <Text>Hotline order: (028)7300 7299 - 0935 177701 (Zalo/Viber)</Text>
+            <Text>Hotline delivery: 078 229 7799</Text>
+            <Text>Email: sales1@nhabanhoa.com</Text>
+          </View>
         </View>
+        <Text style={styles.date}>{`AVAILABLE LIST OF STOCK ON ${date}`}</Text>
       </View>
       <View style={styles.pageContent}>
         {
@@ -214,7 +233,7 @@ function MyPage({itemDetails, index, date, totalPage}: {itemDetails: IItemDetail
   );
 }
 
-const perPage = 9
+const perPage = 8
 
 const dumpItem:IItemDetail = {
   available: 0,
@@ -226,9 +245,7 @@ const dumpItem:IItemDetail = {
   orderBy: "",
   origin: "",
   packaging: "",
-  price: "",
-  engName: "",
-  engNote: ""
+  price: ""
 }
 
 function getPageContent(itemDetails: IItemDetail[], date: string) {
@@ -247,7 +264,7 @@ function getPageContent(itemDetails: IItemDetail[], date: string) {
   return pagesData.map((pageData, index) => <MyPage itemDetails={pageData} index={index} date={date} totalPage={pageNum}/>)
 }
 
-function MyDoc ({itemDetails, date}: {itemDetails: IItemDetail[], date: string}) {
+function MyDocEng ({itemDetails, date}: {itemDetails: IItemDetail[], date: string}) {
   return (
     <Document>
       {
@@ -257,4 +274,4 @@ function MyDoc ({itemDetails, date}: {itemDetails: IItemDetail[], date: string})
   )
 }
 
-export default MyDoc;
+export default MyDocEng;
