@@ -1,7 +1,7 @@
 export interface IItemDetail {
   name: string;
   available: number;
-  packaging: number;
+  packaging?: string;
   origin: string;
   price: string;
   length: string;
@@ -9,4 +9,6 @@ export interface IItemDetail {
   images?: string;
   orderBy: string;
   note: string;
+  engName?: string;
+  engNote?: string;
 }

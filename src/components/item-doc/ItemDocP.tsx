@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
 function ItemCard({itemDetail}: {itemDetail:IItemDetail}) {
   return (
     <View style={[styles.card, {opacity: itemDetail.name !== 'dump' ? 1 : 0}]}>
-      <Text style={styles.name}>{itemDetail.name.toLocaleUpperCase("vn")}</Text>
+      <Text style={styles.name}>{itemDetail.name?.toLocaleUpperCase("vn")}</Text>
       <View style={styles.imageAndInfo}>
         <View style={styles.image}>
           {itemDetail.images && <Image style={styles.img} src={itemDetail.images}></Image>}
@@ -155,7 +155,7 @@ function ItemCard({itemDetail}: {itemDetail:IItemDetail}) {
               <Text>Giá</Text>
               <Text>{`: `}</Text>
             </View>
-            <Text style={[styles.detail, {fontWeight: 'black', fontSize: itemDetail.price.length > 16 ? 8 : 11}]}>{itemDetail.price}</Text>
+            {itemDetail.price && <Text style={[styles.detail, {fontWeight: 'black', fontSize: itemDetail.price?.length > 16 ? 8 : 11}]}>{itemDetail.price}</Text>}
           </View>
           <View style={styles.infoDetail}>
             <View style={styles.title}>
@@ -193,9 +193,9 @@ function ItemCard({itemDetail}: {itemDetail:IItemDetail}) {
             {itemDetail.note && <Text style={[
               styles.detail, 
               {
-                color: itemDetail.note?.includes('BUY 1 GET 1') ? '#98300e' : 'black', 
-                backgroundColor: itemDetail.note?.includes('BUY 1 GET 1') ? '#F5e7a2' : 'white',
-                fontWeight: itemDetail.note?.includes('BUY 1 GET 1') ? 'bold' : 'normal'
+                color: itemDetail.note?.includes('MUA 1 TẶNG 1') ? '#98300e' : 'black', 
+                backgroundColor: itemDetail.note?.includes('MUA 1 TẶNG 1') ? '#F5e7a2' : 'white',
+                fontWeight: itemDetail.note?.includes('MUA 1 TẶNG 1') ? 'bold' : 'normal'
               }]}>{itemDetail.note}</Text>}
           </View>
         </View>
@@ -243,7 +243,7 @@ const dumpItem:IItemDetail = {
   note: "",
   orderBy: "",
   origin: "",
-  packaging: 0,
+  packaging: "",
   price: ""
 }
 
@@ -258,7 +258,7 @@ function getPageContent(itemDetails: IItemDetail[], date: string) {
         pagesData[i].push(dumpItem)
       }
     }
-    console.log(i, pagesData)
+    // console.log(i, pagesData)
   }
   return pagesData.map((pageData, index) => <MyPage itemDetails={pageData} index={index} date={date} totalPage={pageNum}/>)
 }

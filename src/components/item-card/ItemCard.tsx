@@ -7,7 +7,7 @@ function ItemCard({itemDetail}: { itemDetail: IItemDetail }) {
   return (
     <div className={`item-card-wrapper ${itemDetail.name === 'dump' ? 'hide' : ''}`}>
       <div className="item-name">
-        {itemDetail.name.toLocaleUpperCase("vn")}
+        {itemDetail.name?.toLocaleUpperCase("vn")}
       </div>
       <div className="item-detail-info">
         <div className="item-image">

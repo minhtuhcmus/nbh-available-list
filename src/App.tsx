@@ -5,11 +5,12 @@ import {IItemDetail} from "./interface/item/item";
 // import { useReactToPrint } from "react-to-print";
 import * as XLSX from "xlsx";
 import logo_img from "../src/assets/logo.png";
-import { PDFDownloadLink } from '@react-pdf/renderer';
-// import MyDoc from './components/item-doc/ItemDoc';
-import MyDocP from './components/item-doc/ItemDocP';
+import { PDFDownloadLink} from '@react-pdf/renderer';
 // import MyDoc from './components/item-doc/ItemDoc';
 
+import MyDocP from './components/item-doc/ItemDocP';
+// import MyDoc from './components/item-doc/ItemDoc';
+import MyDocEng from './components/item-doc/ItemEngDoc';
 
 function Page({itemDetails, index, date}: {itemDetails:IItemDetail[], index: number, date: string}) {
   return (
@@ -37,8 +38,10 @@ const dumpItem:IItemDetail = {
   note: "",
   orderBy: "",
   origin: "",
-  packaging: 0,
-  price: ""
+  packaging: "",
+  price: "",
+  engName: "",
+  engNote: ""
 }
 
 function App() {
@@ -46,6 +49,11 @@ function App() {
   const componentRef = useRef(null);
   const [itemDetails, setItemDetails] = useState<IItemDetail[]>([]);
   const [date, setDate] = useState('');
+  const [prepareVie, setPrepareVie] = useState(false);
+  const [prepareEng, setPrepareEng] = useState(false);
+  // const [instanceVie, updateInstanceVie] = usePDF({ document: <MyDoc itemDetails={itemDetails} date={date}/>});
+  // const [instanceEng, updateInstanceEng] = usePDF({ document: <MyDocEng itemDetails={itemDetails} date={date}/>});
+
 
   // const handleAfterPrint = React.useCallback(() => {
   //   console.log("`onAfterPrint` called"); // tslint:disable-line no-console
@@ -97,7 +105,7 @@ function App() {
           pagesData[i].push(dumpItem)
         }
       }
-      console.log(i, pagesData)
+      // console.log(i, pagesData)
     }
     return pagesData.map((pageData, index) => <Page itemDetails={pageData} index={index} date={date}/>)
   }
@@ -108,17 +116,33 @@ function App() {
       const reader = new FileReader();
       reader.onload = (e) => {
         const data = e.target?.result;
-        console.log(e.target?.result)
+        // console.log(e.target?.result)
         const workbook = XLSX.read(data, { type: "array" });
         const sheetName = workbook.SheetNames[0];
         const worksheet = workbook.Sheets[sheetName];
         const json:IItemDetail[] = XLSX.utils.sheet_to_json(worksheet);
-        console.log(json);
+        // console.log(json);
         setItemDetails(json);
       };
       reader.readAsArrayBuffer(e.target.files[0]);
     }
   }
+
+  // function EngVer(doc: React.ReactElement<ReactPDF.DocumentProps, string | React.JSXElementConstructor<any>>) {
+  //   <PDFDownloadLink document={doc} fileName="EngVer.pdf">
+  //     {({ blob, url, loading, error }) =>
+  //       loading ? 'Loading document...' : 'Download EngVer now!'
+  //     }
+  //   </PDFDownloadLink>
+  // }
+  
+  // function VieVer(doc: React.ReactElement<ReactPDF.DocumentProps, string | React.JSXElementConstructor<any>>) {
+  //   <PDFDownloadLink document={doc} fileName="somename.pdf">
+  //     {({ blob, url, loading, error }) =>
+  //       loading ? 'Loading document...' : 'Download VieVer now!'
+  //     }
+  //   </PDFDownloadLink>
+  // }
 
   return (
     <div className="App">
@@ -139,16 +163,23 @@ function App() {
             onChange={e => setDate(e.target.value)}
           />
         </div>
-        {/*<button className="get-pdf-btn" onClick={handlePrint}>*/}
-        {/*  Get PDF*/}
-        {/*</button>*/}
       </div>
-      {/* <PDFDownloadLink document={<MyDoc itemDetails={itemDetails} date={date}/>} fileName="somename.pdf">
-        {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now landscape!')}
-      </PDFDownloadLink> */}
-      <PDFDownloadLink document={<MyDocP itemDetails={itemDetails} date={date}/>} fileName="somename.pdf">
-        {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now portrait!')}
-      </PDFDownloadLink>
+      {!prepareEng ? <button onClick={() => setPrepareEng(true)}>Soạn EngVer</button> : <PDFDownloadLink onClick={() => setPrepareEng(false)} document={<MyDocEng itemDetails={itemDetails} date={date}/>} fileName="EngVer.pdf">
+      {({ blob, url, loading, error }) =>
+        loading ? 'Loading document...' : 'Download EngVer now!'
+      }
+    </PDFDownloadLink>}
+      {!prepareVie ? <button onClick={() => setPrepareVie(true)}>Soạn VieVer</button> : <PDFDownloadLink document={<MyDocP itemDetails={itemDetails} date={date}/>} fileName="VieVer.pdf">
+      {({ blob, url, loading, error }) =>
+        loading ? 'Loading document...' : 'Download VieVer now!'
+      }
+    </PDFDownloadLink>}
+
+      {/* <button onClick={() => {renderToFile(<MyDocEng itemDetails={itemDetails} date={date}/>, 'EngVer.pdf')}}>Soạn EngVer</button>
+      <button onClick={() => {renderToFile(<MyDoc itemDetails={itemDetails} date={date}/>, 'VieVer.pdf')}}>Soạn VieVer</button> */}
+      {/* {instanceVie.loading ? <a href={instanceVie.url!} download="VieVer.pdf">Tải Tiếng Việt</a> : 'Loading Tiếng Việt...'}
+      {instanceEng.loading ? <a href={instanceEng.url!} download="EngVer.pdf">Tải Tiếng Việt</a> : 'Loading Tiếng Anh...'} */}
+
       <div className="viewer" ref={componentRef}>
         {/*<div className="page">*/}
         {/*  <div className="company-info">*/}
