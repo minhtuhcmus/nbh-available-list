@@ -54,7 +54,14 @@ function ItemCard({itemDetail}: { itemDetail: IItemDetail }) {
               <span>Ghi chú</span>
               <span>:</span>
             </div>
-            { itemDetail.note &&<div className="info-detail">{` ${itemDetail.note}`}</div>}
+            { itemDetail.note &&
+            <div 
+              className="info-detail"
+              style={{
+                color: itemDetail.note?.includes('BUY 1 GET 1') ? '#98300e' : 'black', 
+                backgroundColor: itemDetail.note?.includes('BUY 1 GET 1') ? '#F5e7a2' : 'white',
+                fontWeight: itemDetail.note?.includes('BUY 1 GET 1') ? 'bold' : 'normal'
+              }}>{` ${itemDetail.note}`}</div>}
           </div>
         </div>
       </div>

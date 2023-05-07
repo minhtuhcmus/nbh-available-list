@@ -190,7 +190,13 @@ function ItemCard({itemDetail}: {itemDetail:IItemDetail}) {
               <Text>Ghi chú</Text>
               <Text>{`: `}</Text>
             </View>
-            <Text style={styles.detail}>{itemDetail.note}</Text>
+            {itemDetail.note && <Text style={[
+              styles.detail, 
+              {
+                color: itemDetail.note?.includes('BUY 1 GET 1') ? '#98300e' : 'black', 
+                backgroundColor: itemDetail.note?.includes('BUY 1 GET 1') ? '#F5e7a2' : 'white',
+                fontWeight: itemDetail.note?.includes('BUY 1 GET 1') ? 'bold' : 'normal'
+              }]}>{itemDetail.note}</Text>}
           </View>
         </View>
       </View>
